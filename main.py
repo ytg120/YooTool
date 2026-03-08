@@ -165,7 +165,7 @@ def button_deleter(tab):
 class TextEditor:
     def __init__(self):
         self.root = Toplevel()
-        self.root.title("Text")
+        self.root.title("Text Editor")
         self.root.geometry("600x500")
 
         cm = Menu(self.root)
@@ -196,7 +196,6 @@ class TextEditor:
         self.text_area.delete("1.0", END)
         with open(file_path, "r", encoding="utf-8") as file:
             self.text_area.insert("1.0", file.read())
-        self.root.title(f"텍스트 에디터 - {file_path}")
 
     def save_file(self):
         file_path = filedialog.asksaveasfilename(defaultextension=".txt",
