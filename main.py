@@ -5,7 +5,6 @@ from PIL import Image, ImageTk
 import os
 import json
 from tkinter.colorchooser import askcolor
-# from tkhtmlview import HTMLLabel
 import sys
 import shutil
 
