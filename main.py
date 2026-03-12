@@ -61,17 +61,27 @@ def add_sprite():
     nameentry.pack(anchor='w')
     global dataentry, type
     def txt_selected():
-        global dataentry, type
-        deleter(asktab, ttk.Entry)
+        global dataentry, type, data_text
+        try:
+            data_text.destroy()
+            dataentry.destroy()
+        except:
+            pass
         type = 'text'
-        Label(asktab, text=langdata['txtdata']).pack()
+        data_text = Label(asktab, text=langdata['txtdata'])
+        data_text.pack()
         dataentry = ttk.Entry(asktab)
         dataentry.pack(anchor='w')
     def img_selected():
-        global dataentry, type
-        deleter(asktab, ttk.Entry)
+        global dataentry, type, data_text
+        try:
+            data_text.destroy()
+            dataentry.destroy()
+        except:
+            pass
         type = 'image'
-        Label(asktab, text=langdata['imgdata']).pack()
+        data_text = Label(asktab, text=langdata['imgdata'])
+        data_text.pack()
         dataentry = ttk.Entry(asktab)
         dataentry.pack(anchor='w')
     type = 'text'
@@ -87,10 +97,10 @@ def add_sprite():
 def create_sprite(name, type, data2):
     if name.isascii() == True:
         data['sprites'][name] = {
-            "name": name,
             "type": type,
             "data": data2,
-            "code": f"{name} = Sprite('{data2}')"}
+            "code": f"{name} = Sprites('{type}', '{name}')"
+        }
         asktab.destroy()
         button = ttk.Button(root, text=name)
         bi[name] = button
@@ -153,7 +163,10 @@ def new_project():
     with open(os.path.join(project_path, "game.json"), "w", encoding="utf-8") as f:
         json.dump(game_template, f, indent=4)
     shutil.copy(get_resource_path(os.path.join('engine', 'data', 'Font.ttf')), os.path.join(project_path, 'data', 'Font.ttf'))
-    shutil.copy(get_resource_path(os.path.join('engine', 'engine.exe')), os.path.join(project_path, 'engine.exe'))
+    # shutil.copy(get_resource_path(os.path.join('engine', 'engine.exe')), os.path.join(project_path, 'engine.exe')) 
+    shutil.copy(get_resource_path(os.path.join('engine', 'data', 'engine.py')), os.path.join(project_path, 'data', 'engine.py'))
+    shutil.copy(get_resource_path(os.path.join('engine', 'data', 'README.txt')), os.path.join(project_path, 'data', 'README.txt'))
+    shutil.copy(get_resource_path(os.path.join('engine', 'executor.py')), os.path.join(project_path, 'executor.py'))
     print("complete:", project_path)
     
 # this place was for paint app, but deleted cuz its useless(for now)
