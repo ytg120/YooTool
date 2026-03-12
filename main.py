@@ -49,7 +49,7 @@ def load():
     ttk.Button(root, text='+', command=add_sprite).pack(anchor='w')
     ttk.Button(root, text=langdata['delete'], command=delete).pack(anchor='w')
     ttk.Button(root, text=langdata['code'], command=TextEditor).pack(anchor='w')
-    ttk.Button(root, text=langdata['edit']).pack(anchor='w')
+    # ttk.Button(root, text=langdata['edit']).pack(anchor='w')
 
 def add_sprite():
     global asktab
@@ -96,6 +96,7 @@ def add_sprite():
 def create_sprite(name, type, data2):
     if name.isascii() == True:
         data['sprites'][name] = {
+            "name": name,
             "type": type,
             "data": data2,
             "code": f"{name} = Sprites('{type}', '{name}')"
@@ -162,13 +163,12 @@ def new_project():
     with open(os.path.join(project_path, "game.json"), "w", encoding="utf-8") as f:
         json.dump(game_template, f, indent=4)
     shutil.copy(get_resource_path(os.path.join('engine', 'data', 'Font.ttf')), os.path.join(project_path, 'data', 'Font.ttf'))
-    shutil.copy(get_resource_path(os.path.join('engine', 'data', 'engine.py')), os.path.join(project_path, 'data', 'engine.py'))
     shutil.copy(get_resource_path(os.path.join('engine', 'data', 'README.txt')), os.path.join(project_path, 'data', 'README.txt'))
     answer = messagebox.askquestion('Platform', langdata['platform'])
-    if answer == 'Windows':
-        shutil.copy(get_resource_path(os.path.join('engine', 'executor.exe')), os.path.join(project_path, 'executor.exe'))
-    if answer == 'Linux':
-        shutil.copy(get_resource_path(os.path.join('engine', 'executor.sh')), os.path.join(project_path, 'executor.sh'))
+    if answer == 'yes':
+        shutil.copy(get_resource_path(os.path.join('engine', 'engine.exe')), os.path.join(project_path, 'engine.exe'))
+    if answer == 'no':
+        shutil.copy(get_resource_path(os.path.join('engine', 'engine.sh')), os.path.join(project_path, 'engine.sh'))
     print("complete:", project_path)
 def deleter(tab, widget_type):
     for widget in tab.winfo_children():
@@ -223,7 +223,7 @@ class TextEditor:
         ttk.Button(xytab, text=langdata['xy3'], command=lambda: self.set_xy(xentry.get(), yentry.get(), xytab)).pack()
 
     def set_xy(self, x, y, window):
-        self.text_area.insert(INSERT, f"{button_set}.xy_set({x}, {y})\n")
+        self.text_area.insert(INSERT, f"{button_set}.set_xy({x}, {y})\n")
         window.destroy()
 
 def save():
