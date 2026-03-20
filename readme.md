@@ -14,6 +14,6 @@ A python tkinter game maker.
 파이썬 Tkinter 게임 제작 툴.
 
 ## 설치
-1. [여기](https://github.com/ytg120/GMaker/releases/latest) 클릭하여 설치(윈도우 64비트 지원됨.)
-2. .zip 파일 풀기.
-3. main.exe 파일을 실행.
+1. [여기](https://github.com/ytg120/GMaker/releases/latest)를 클릭하여 설치합니다(윈도우 64비트 지원됨.)
+2. .zip 파일 압축을 해제합니다.
+3. main.exe 파일을 실행합니다.
