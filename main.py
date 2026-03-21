@@ -165,10 +165,10 @@ def new_project():
     shutil.copy(get_resource_path(os.path.join('engine', 'data', 'Font.ttf')), os.path.join(project_path, 'data', 'Font.ttf'))
     shutil.copy(get_resource_path(os.path.join('engine', 'data', 'README.txt')), os.path.join(project_path, 'data', 'README.txt'))
     answer = messagebox.askquestion('Platform', langdata['platform'])
-    if answer == 'yes':
-        shutil.copy(get_resource_path(os.path.join('engine', 'engine.exe')), os.path.join(project_path, 'engine.exe'))
-    if answer == 'no':
-        shutil.copy(get_resource_path(os.path.join('engine', 'engine.sh')), os.path.join(project_path, 'engine.sh'))
+    # if answer == 'yes':
+    shutil.copy(get_resource_path(os.path.join('engine', 'engine.exe')), os.path.join(project_path, 'engine.exe'))
+    # if answer == 'no':
+    #     shutil.copy(get_resource_path(os.path.join('engine', 'engine.sh')), os.path.join(project_path, 'engine.sh'))
     print("complete:", project_path)
 def deleter(tab, widget_type):
     for widget in tab.winfo_children():
