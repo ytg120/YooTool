@@ -296,7 +296,7 @@ def set_lang(lang):
 def start_main():
     global root
     root = Tk()
-    root.title("GMAKER")
+    root.title("YooTool")
     root.geometry('300x300')
     menubar = Menu(root)
     editmenu = Menu(menubar, tearoff=0)
